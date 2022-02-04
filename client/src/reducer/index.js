@@ -7,7 +7,8 @@ import {
     GET_NAME_DOG,
     POST_DOG,
     GET_DETAIL,
-    FILTER_CREATED
+    FILTER_CREATED,
+    CLEAN_DETAIL
   } from "../actions";
 
   const initialState = {
@@ -76,7 +77,7 @@ import {
               return{
                   ...state,
                   dogs:  action.payload === 'All' ? AllDogs : createdFilter
-              }
+              };
         
         case ORDER_BY_WEIGHT:
                 let dogui = state.allDogs
@@ -102,7 +103,7 @@ import {
             return {
                 ...state,
                 dogs: sortedArray
-            }
+            };
   
         case GET_NAME_DOG:
             return{
@@ -120,6 +121,13 @@ import {
             ...state,
             detail: action.payload,
         };
+
+        case CLEAN_DETAIL:
+          return {
+          ...state,
+          detail: [],
+        }
+        
         default:
           return state;
     }

@@ -57,7 +57,7 @@ router.get("/dogs", async (req, res) => {
     let dogName = await dogsTotal.filter((e) =>
       e.name.toLowerCase().includes(name.toLowerCase())
     );
-    dogName.length // SI SACO EL .length, al buscar una raza incorrecta, renderiza un espacio vacio!
+    dogName//.length // SI SACO EL .length, al buscar una raza incorrecta, renderiza un espacio vacio!
       ? res.status(200).json(dogName)
       : res.status(404).send("This breed doesn't exist");
   } else {

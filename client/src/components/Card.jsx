@@ -1,7 +1,5 @@
 import React from "react";
 // import "../styles/Card.css";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default function Card({ name, image, temperaments, weight }) {
   return (
@@ -17,7 +15,6 @@ export default function Card({ name, image, temperaments, weight }) {
       <h5>
         {temperaments}
       </h5>
-      {/* <h5 className="hearth"><FontAwesomeIcon icon={faHeart}/></h5> */}
       <h5>Weight:</h5>
       <h5>
         {weight}kg

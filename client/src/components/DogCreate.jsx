@@ -18,7 +18,7 @@ function validate(input) {
     : (errors.height = "Put a height for your breed!");
   input.lifeSpan
     ? (errors.lifeSpan = "")
-    : (errors.lifeSpan = "Put a Life Span for your breed!");
+    : (errors.lifeSpan = "Put a life span for your breed!");
   input.temperaments.length < 1
     ? (errors.temperaments = "Choose at least one temperament")
     : (errors.temperaments = "");
@@ -127,7 +127,7 @@ export default function DogCreate() {
               <div>
                 <label>Weight:</label>
                 <input
-                placeholder="Complete here..."
+                placeholder="min - max"
                 type="text"
                 value={input.weight}
                 name="weight"
@@ -138,6 +138,7 @@ export default function DogCreate() {
               <div>
                 <label>Height:</label>
                 <input
+                placeholder="min - max"
                 type="text"
                 value={input.height}
                 name="height"
@@ -148,6 +149,7 @@ export default function DogCreate() {
               <div>
               <label>Life Span:</label>
               <input
+              placeholder="Complete here..."
               type="text"
               value={input.lifeSpan}
               name="lifeSpan"
@@ -159,7 +161,7 @@ export default function DogCreate() {
             <label>Image:</label>
             <input
             type="text"
-            placeholder="Example: https://..."
+            placeholder="https://..."
             value={input.image}
             name="image"
             onChange={(e) => handleChange(e)}

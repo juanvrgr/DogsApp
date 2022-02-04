@@ -9,6 +9,7 @@ export const GET_NAME_DOG = "GET_NAME_DOG";
 export const POST_DOG = "POST_DOG";
 export const GET_DETAIL = "GET_DETAIL";
 export const FILTER_CREATED = "FILTER_CREATED";
+export const CLEAN_DETAIL = "CLEAN_DETAIL";
 
 export function getDogs() {
   return async function (dispatch) {
@@ -33,8 +34,8 @@ export function getNameDog(name) {
     } catch (error) {
       alert("This breed doesn't exist!");
   }
-}
-}
+};
+};
 
 export function getTemperaments() {
   return async function (dispatch) {
@@ -101,3 +102,10 @@ export function filterCreated(payload){
        payload
    }
 };
+
+export function cleanDetail(payload) {
+  return {
+    type: "CLEAN_DETAIL",
+    payload,
+  };
+}

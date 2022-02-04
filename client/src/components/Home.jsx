@@ -41,31 +41,31 @@ const [orderLike, setOrderLike] = useState("");
 function handleClick(e) {
     e.preventDefault();
     dispatch(getDogs());
-}
+};
 
 function handleSelect(e) {
     e.preventDefault();
     dispatch(filterByTemperaments(e.target.value));
-}
+};
 
 function handleSelectByName(e) {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
     setOrderName("Order" + e.target.value);
-}
+};
 
 function handleSelectByWeight(e) {
     e.preventDefault();
     dispatch(orderByWeight(e.target.value));
     setCurrentPage(1);
     setOrderLike("Order" + e.target.value);
-}
+};
 
 function handleFilterCreated(e){
     // e.preventDefault();
     dispatch(filterCreated(e.target.value))
-}
+};
 
 useEffect(() => {
     dispatch(getDogs());
@@ -77,7 +77,7 @@ useEffect(() => {
 
 return (
   <div>
-    <h1>BREEDEX</h1>
+    <h1>Breedex</h1>
     <SearchBar setCurrentPage={(setCurrentPage)}/>
     <Link to="/dog">
       <button>Create your breed</button>
@@ -94,13 +94,13 @@ return (
     <div>
       <span>Order by Breed Name</span>
       <select onChange={(n) => handleSelectByName(n)}>
-        <option value="default">All</option>
+        <option value="A-Z">All</option>
         <option value="A-Z">A-Z</option>
         <option value="Z-A">Z-A</option>
       </select>
       <span>Order by Weight</span>
       <select onChange={(s) => handleSelectByWeight(s)}>
-        <option value="all">All</option>
+        <option value="All">All</option>
         <option value="asc">Highest Weight</option>
         <option value="desc">Lowest Weight</option>
       </select>
@@ -114,9 +114,9 @@ return (
         ))}
       </select>
       <select onChange={e=> handleFilterCreated(e)}>
-                  <option value="all">Todos</option>
-                  <option value="created">Creados</option>
-                  <option value="api">Existentes</option>
+                  <option value="all">All</option>
+                  <option value="created">Created</option>
+                  <option value="api">API</option>
       </select>
     </div>
     <div>
@@ -158,4 +158,4 @@ return (
     </div>
   </div>
 );
-}
+};
