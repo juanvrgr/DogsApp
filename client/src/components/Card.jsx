@@ -1,23 +1,23 @@
 import React from "react";
-// import "../styles/Card.css";
+import "../styles/Card.css";
 
 export default function Card({ name, image, temperaments, weight }) {
   return (
-    <div>
+    <div className="cardComp">
       <h3>{name}</h3>
       <img
         src={image}
-        alt="Img recipe not found"
+        alt={""}
         width="150px"
         height="150px"
       />
-      <h5>Temperaments:</h5>
-      <h5>
+      <h5 className="temperament">Temperaments:</h5>
+      <h5 className="dogs">
         {temperaments}
       </h5>
       <h5>Weight:</h5>
-      <h5>
-        {weight}kg
+      <h5 className="weight">
+        {weight} kg
       </h5>
     </div>
   );

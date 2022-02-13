@@ -1,0 +1,12 @@
+.delete {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size:cover;
+    background-image: url("../assets/imgDelete.jpg");
+    background-position:100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "Comic Neue", cursive;
+  }

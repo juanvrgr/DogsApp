@@ -1,0 +1,54 @@
+.cardComp {
+    border: 1px solid #43c747b7;
+    background-image: url("../assets/imgCard.jpg");
+    background-position: absolute;
+    background: cover;
+    color: #43c747b7;
+    display: inline-block;
+    margin: 2%;
+    padding: 0.9em;
+    vertical-align: top;
+    width: 33, 5%;
+  }
+  
+   .cardComp h3 {
+    text-align: center;
+    margin-left: 7%;
+    width: 200px;
+    margin-top: 5px;
+    color: #43c747b7;
+    text-shadow: rgb(19, 19, 18) -1px 1px;
+  }
+  
+  .cardComp h3:hover {
+    color: whitesmoke;
+    text-shadow: rgb(19, 19, 18) -3px 1px;
+  }
+  
+  .cardComp img {
+    display: flex;
+    margin-left: 20%;
+  }
+  
+  .cardComp img:hover {
+    border: 2px outset whitesmoke;
+  }
+  
+  .temperament {
+    color: #43c747b7;
+    margin-bottom: 7px;
+    margin-top: 9px;
+  }
+  
+  .dogs {
+    color: whitesmoke;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .weight {
+    align-items: center;
+    color: whitesmoke;
+    margin-top: 0;
+    margin-bottom: 0;
+  }

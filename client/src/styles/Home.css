@@ -1,0 +1,145 @@
+.home {
+    margin: 0;
+    top: 0;
+    bottom:-77%;
+    width: 100%;
+    /* min-height: fit-content;
+    max-height: max-content; */
+    position:absolute;
+    background-size:cover;
+    background-image: url("../assets/imgHome.jpeg");
+    background-position:100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Georgia, 'Times New Roman', Times, serif
+  }
+  
+  .home h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+    font-size: 40px;
+    font-style: Bold 700 italic;
+    color: #43c747b7;
+    text-shadow: rgb(19, 19, 18) -3px 1px;
+  }
+  
+  .linkCreate {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 7vw;
+    color: rgb(223, 208, 124);
+  }
+
+  .buttonCreate {
+    border: solid 2px transparent;
+    border-color: whitesmoke;
+    border-width: 0.5px;
+    border-radius: 100px;
+    margin-right: -80vw;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    width: 150px;
+    padding: 0;
+    height: 30px;
+    background-color: #43c747b7;
+    transition: background-color 0.25s, color 0.25s;
+    cursor: pointer;
+    color: whitesmoke;
+    font-size: 1rem;
+  }
+
+  .buttonCreate:hover {
+    background-color: rgb(216, 216, 215);
+    color: rgb(19, 19, 18);
+    border-color: #43c747b7;
+    transition: all 500ms;
+  }
+
+  .linkCreate {
+    text-decoration: none;
+  }
+  
+  .showAll {
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+  }
+
+  .showAll button {
+    font-size: 18px;
+    height: 25px;
+    border-color: rgb(24, 24, 24);;
+    padding-left: 5px;
+    padding-right: 5px;
+    background: whitesmoke;
+    border-style: solid;
+    border-bottom-width: 1px;
+    transition: background-color 0.25s;
+    border-radius: 5px;
+    color: rgb(24, 24, 24);
+    cursor: pointer;
+    transition: all 500ms;
+  }
+
+  .showAll button:hover {
+    background-color: #43c747b7;
+    color: whitesmoke;
+    border-color: rgb(24, 24, 24);
+  }
+  
+  .select {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .span {
+    display: flex;
+    margin-right: 6px;
+    margin-left: 20px;
+    color: #43c747b7;
+    font-size: 23px;
+    text-shadow: rgb(19, 19, 18) -3px 1px;
+  }
+  
+  /* .paginate {
+    margin-bottom: 20px;
+  } */
+
+  /* .paginate button {
+    background-color: rgb(197, 183, 104);
+    border-color: rgb(0, 0, 0);
+  } */
+  
+  /* .paginate button:hover {
+    background-color: rgb(0, 0, 0);
+    color: rgb(197, 183, 104);
+    border-color: rgb(197, 183, 104);
+  } */
+  
+  .cards {
+    /* margin-left: 7%; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-bottom: 60px;
+  }
+  
+  .linkCard {
+    text-decoration: none;
+  }
+  
+  .dogsMap {
+    margin-top: 2px;
+    margin-bottom: 0;
+  }
+
+  .filter{
+    background-color: whitesmoke;
+  }

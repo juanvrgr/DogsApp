@@ -1,0 +1,88 @@
+.detail {
+    background-image: url("../assets/imgDetail.jpg");
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(20, 20, 17);
+  }
+
+  .detail h2 {
+    color: rgb(117, 194, 46);
+  }
+  
+  .detail button {
+    border-color: whitesmoke;
+    border: solid 2px;
+    border-width: 0.5px;
+    border-radius: 30px;
+    background-color: #43c747b7;
+    transition: background-color 0.25s, color 0.25s;
+    height: 45px;
+    padding: 7px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: pointer;
+    color: rgb(216, 216, 215);
+    font-size: 17px;
+  }
+
+  .detail button:hover {
+    background-color: rgb(216, 216, 215);
+    color: rgb(19, 19, 18);
+    border-color: #43c747b7;
+  }
+  
+  .detail h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 35px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  
+  .detail img {
+    width: 300px;
+    height: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* .detail img:hover {
+    border: 2px outset whitesmoke;
+  } */
+  
+  .detail h2 {
+    align-items: center;
+    color: rgb(117, 194, 46);
+  }
+
+  .h3-2 h3 {
+    align-items: center;
+  }
+  
+  .details p {
+    margin-left: 17%;
+    margin-right: 17%;
+    background-color: #5f5f5fab;
+    padding: 2%;
+    font-family: "Comic Neue", cursive;
+  }
+  
+  .details ul {
+    margin-left: 17%;
+    margin-right: 17%;
+    background-color: #5f5f5fab;
+    padding: 2%;
+    font-family: "Comic Neue", cursive;
+  }
+
+  .boxTitle {
+    font-size: 30px;
+  }

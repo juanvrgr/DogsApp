@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { postDog, getTemperaments } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
-// import "../styles/RecipeCreate.css";
+import "../styles/DogCreate.css";
 
 function validate(input) {
   let errors = {};
@@ -31,16 +31,58 @@ function validate(input) {
 };
 
 export default function DogCreate() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const temperaments = useSelector((state) => state.temperaments);
-    const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const temperaments = useSelector((state) => state.temperaments);
+  const [errors, setErrors] = useState({});
 
-    useEffect(() => {
-      dispatch(getTemperaments());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, [dispatch]);
 
-    const [input, setInput] = useState({
+  const [input, setInput] = useState({
+    name: "",
+    weight: "",
+    height: "",
+    lifeSpan: "",
+    image: "",
+    temperaments: [],
+  });
+
+  function handleChange(e) {
+    setInput((input) => ({
+      ...input,
+      [e.target.name]: e.target.value,
+    }));
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+  };
+
+  function handleSelect(e) {
+    if (input.temperaments.indexOf(e.target.value) === -1) { // FIXED
+      setInput((input) => ({
+        ...input,
+        temperaments: [...input.temperaments, e.target.value],
+      }));
+      setErrors(
+        validate({
+          ...input,
+          temperaments: [...input.temperaments, e.target.value],
+        })
+      );
+    }
+  };
+
+  function handleSubmit(e) {
+    if (input.name && input.weight && input.height && input.image && input.temperaments.length > 0) {
+      e.preventDefault();
+      dispatch(postDog(input));
+      alert("Breed created successfully!");
+      setInput({
         name: "",
         weight: "",
         height: "",
@@ -48,127 +90,87 @@ export default function DogCreate() {
         image: "",
         temperaments: [],
       });
+      navigate("/home");
+    } else {
+      e.preventDefault();
+      alert("You must complete every field to continue!");
+    }
+  };
 
-      function handleChange(e) {
-        setInput((input) => ({
-          ...input,
-          [e.target.name]: e.target.value,
-        }));
-        setErrors(
-          validate({
-            ...input,
-            [e.target.name]: e.target.value,
-          })
-        );
-      };
+  function handleDelete(e, d) {
+    e.preventDefault();
+    setInput({
+      ...input,
+      temperaments: input.temperaments.filter((temp) => temp !== d),
+    });
+  };
 
-      function handleSelect(e) {
-        if(input.temperaments.indexOf(e.target.value) === -1){ // FIXED
-          setInput((input) => ({
-            ...input,
-            temperaments: [...input.temperaments, e.target.value],
-          }));
-          setErrors(
-            validate({
-              ...input,
-              temperaments: [...input.temperaments, e.target.value],
-            })
-          );
-        }
-      };
-
-      function handleSubmit(e) {
-        if (input.name && input.weight && input.height && input.image && input.temperaments.length > 0) {
-          e.preventDefault();
-          dispatch(postDog(input));
-          alert("Breed created successfully!");
-          setInput({
-            name: "",
-            weight: "",
-            height: "",
-            lifeSpan: "",
-            image: "",
-            temperaments: [],
-          });
-          navigate("/home");
-        } else {
-          e.preventDefault();
-          alert("You must complete every field to continue!");
-        }
-      };
-    
-      function handleDelete(e, d) {
-        e.preventDefault();
-        setInput({
-          ...input,
-          temperaments: input.temperaments.filter((temp) => temp !== d),
-        });
-      };
-    
-      return (
-        <div>
-      <Link to="/home">
-        <button>Go Back</button>
-      </Link>
-          <h1>Create your own Dog!</h1>
+  return (
+    <div className="create">
+      <h1>Create your own Dog!</h1>
+      <div className="form">
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div>
-          <form onSubmit={(e) => handleSubmit(e)}>
-              <div>
-                <label>Breed Name</label>
-                <input
-                placeholder="Complete here..."
-                type="text"
-                value={input.name}
-                name="name"
-                onChange={(e) => handleChange(e)}
-                />
-                {errors.name && <p>{errors.name}</p>}
-              </div>
-              <div>
-                <label>Weight:</label>
-                <input
-                placeholder="min - max"
-                type="text"
-                value={input.weight}
-                name="weight"
-                onChange={(e) => handleChange(e)}
-                />
-                {errors.weight && <p>{errors.weight}</p>}
-              </div>
-              <div>
-                <label>Height:</label>
-                <input
-                placeholder="min - max"
-                type="text"
-                value={input.height}
-                name="height"
-                onChange={(e) => handleChange(e)}
-              />
-              {errors.weight && <p>{errors.weight}</p>}
-              </div>
-              <div>
-              <label>Life Span:</label>
-              <input
+            <label>Breed Name</label>
+            <input
+              className="inputCreate"
+              placeholder="Complete here..."
+              type="text"
+              value={input.name}
+              name="name"
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.name && <p className="error">{errors.name}</p>}
+          </div>
+          <div>
+            <label>Weight:</label>
+            <input
+              className="inputCreate"
+              placeholder="Min - Max"
+              type="text"
+              value={input.weight}
+              name="weight"
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.weight && <p className="error">{errors.weight}</p>}
+          </div>
+          <div>
+            <label>Height:</label>
+            <input
+              className="inputCreate"
+              placeholder="Min - Max"
+              type="text"
+              value={input.height}
+              name="height"
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.weight && <p className="error">{errors.weight}</p>}
+          </div>
+          <div>
+            <label>Life Span:</label>
+            <input
+              className="inputCreate"
               placeholder="Complete here..."
               type="text"
               value={input.lifeSpan}
               name="lifeSpan"
               onChange={(e) => handleChange(e)}
-              />
-              {errors.lifeSpan && <p>{errors.lifeSpan}</p>}
+            />
+            {errors.lifeSpan && <p className="error">{errors.lifeSpan}</p>}
           </div>
-            <div>
+          <div>
             <label>Image:</label>
             <input
-            type="text"
-            placeholder="https://..."
-            value={input.image}
-            name="image"
-            onChange={(e) => handleChange(e)}
+              className="inputCreate"
+              type="text"
+              placeholder="https://..."
+              value={input.image}
+              name="image"
+              onChange={(e) => handleChange(e)}
             />
-            {errors.image && <p>{errors.image}</p>}
-            </div>
-            <div>
+            {errors.image && <p className="error">{errors.image}</p>}
+          </div>
+          <div className="dogsCreate">
             <span >Temperaments:</span>
             <select onChange={(e) => handleSelect(e)}>
               {temperaments.map((d) => (
@@ -183,13 +185,16 @@ export default function DogCreate() {
                 <button onClick={(e) => handleDelete(e, d)}>X</button>
               </ul>
             ))}
-            {errors.temperaments && <p>{errors.temperaments}</p>}
+            {errors.temperaments && <p className="error">{errors.temperaments}</p>}
           </div>
-          <button type="submit">
+          <button type="submit" className="btnCreate">
             Create Breed
           </button>
-          </form>
-        </div>
-        </div>
-      )
+        </form>
+        <Link to="/home">
+        <button className="buttonToHome">Go Back</button>
+      </Link>
+      </div>
+      </div>
+  )
 };
