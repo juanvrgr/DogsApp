@@ -70,7 +70,7 @@ router.get("/dogs/:id", async (req, res) => {
   const { id } = req.params;
   const allDog = await getAll();
   if (id) {
-    let dogId = await allDog.filter((r) => r.id == id);
+    let dogId = await allDog.filter((d) => d.id == id);
     dogId.length
       ? res.status(200).json(dogId)
       : res.status(404).send("Breed ID not found");
@@ -107,19 +107,6 @@ router.get("/temperaments", async (req, res) => {
   const allTemps = await Temperament.findAll();
   res.status(200).send(allTemps)
 });
-
-// router.get("/dogs/filter/:filterTemp", async (req, res) => {
-//   const { filterTemp } = req.params;
-//   try {
-//     const tempFilter = await Temperament.findAll({
-//       where: {
-//         name: filterTemp
-//       }
-//     })
-//     return res.json(tempFilter)
-//   } catch (error) {
-//   }
-// })
 
 // Crea una nueva raza en la base de datos
 router.post("/dog", async (req, res) => {

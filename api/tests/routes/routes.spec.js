@@ -9,16 +9,23 @@ const dog = {
   name: 'Pug',
 };
 
-describe('Videogame routes', () => {
+describe('Dogs routes', () => {
   before(() => conn.authenticate()
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   }));
-  beforeEach(() => Dog.sync({ force: true })
-    .then(() => Dog.create(dog)));
-  describe('GET /dogs', () => {
-    it('should get 200', () =>
+ 
+describe('/dogs', () => {
+    it('GET respond with status 200', () =>
       agent.get('/dogs').expect(200)
     );
-  });
+  })
+
+describe ('/dogs?name=', ()=>{
+  it('GET respond with status 200 if the name is a string', ()=>{
+    agent.get('/dogs?name=pug')
+    .expect((res)=>{
+      expect(res.status).equal(200)})
+  })
+})
 });

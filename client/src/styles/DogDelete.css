@@ -10,3 +10,54 @@
     background-attachment: fixed;
     font-family: "Comic Neue", cursive;
   }
+
+  .inputDelete {
+    background-color: whitesmoke;
+    border-color: rgb(24, 24, 24);
+    height: 25px;
+    color: rgb(24, 24, 24);
+    font-weight: 300;
+    width: 350px;
+    font-family: Georgia, 'Times New Roman', Times, serif
+  }
+
+  .inputDelete::placeholder {
+    color: rgb(24, 24, 24);
+  }
+
+  .btnHome {
+    margin-left: 90%;
+    border: solid 2px;
+    border-width: 0.5px;
+    border-radius: 15px;
+    background-color: #43c747b7;
+    transition: background-color 0.25s, color 0.25s;
+    height: 35px;
+    padding: 7px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: pointer;
+    color: whitesmoke;
+    font-size: 17px;
+  }
+
+  .btnHome:hover {
+    background-color: rgb(216, 216, 215);
+    color: rgb(19, 19, 18);
+    border-color: #43c747b7;
+  }
+
+  .buttonDelete {
+    border-color: rgb(24, 24, 24);
+    background-color: rgb(177, 39, 39);
+    height: 31px;
+    width: 40px;
+    cursor: pointer;
+    transition: background-color 0.25s;
+  }
+
+  .buttonDelete:hover {
+    background-color: whitesmoke;
+    color: rgb(177, 39, 39);
+  }

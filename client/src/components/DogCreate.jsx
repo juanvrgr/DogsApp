@@ -6,29 +6,63 @@ import { useDispatch, useSelector } from "react-redux";
 import "../styles/DogCreate.css";
 
 function validate(input) {
-  let errors = {};
-  input.name
-    ? (errors.name = "")
-    : (errors.name = "Put a name for your breed!");
-  input.weight
-    ? (errors.weight = "")
-    : (errors.weight = "Put a weight for your breed!");
-  input.height
-    ? (errors.height = "")
-    : (errors.height = "Put a height for your breed!");
-  input.lifeSpan
-    ? (errors.lifeSpan = "")
-    : (errors.lifeSpan = "Put a life span for your breed!");
-  input.temperaments.length < 1
-    ? (errors.temperaments = "Choose at least one temperament")
-    : (errors.temperaments = "");
-  if (!input.image.includes("https://") && !input.image.includes("http://")) {
-    errors.image = "This isn't a valid image address";
-  } else {
-    errors.image = "";
+  let errors = { hasErrors: false };
+
+
+  if (!input.name) {
+    errors.name = "Breed name required";
+    errors.hasErrors = true;
+  } else if (!/^[a-zA-Z]+$/.test(input.name)) { //&& /^[\s/) ]*$/.test(input.name)){
+    errors.name = "Breed name can only contain letters";
+    errors.hasErrors = true;
   }
+
+  if (!input.weight) {
+    errors.weight = "Breed weight required";
+    errors.hasErrors = true;
+  } else if (!/^[0-9]*$/.test(input.weight) && /^[\-/) ]*$/.test(input.weight)) {
+    errors.weight = "Weight must be a number";
+    errors.hasErrors = true;
+  } else if (/^[a-zA-Z!@#/\$%\^\&*\)\(+=.,_-\s]+$/g.test(input.weight)) {
+    errors.weight = "Weight must be a number";
+    errors.hasErrors = true;
+  }
+
+  if (!input.height) {
+    errors.height = "Breed height required";
+    errors.hasErrors = true;
+  } else if (!/^[0-9]*$/.test(input.height) && /^[\-/) ]*$/.test(input.height)) {
+    errors.height = "Height must be a number";
+    errors.hasErrors = true;
+  } else if (/^[a-zA-Z!@#/\$%\^\&*\)\(+=.,_-\s]+$/g.test(input.height)) {
+    errors.height = "Weight must be a number";
+    errors.hasErrors = true;
+  }
+
+  if (!input.lifeSpan) {
+    errors.lifeSpan = "Breed life span required";
+    errors.hasErrors = true;
+  } else if (!/^[0-9]*$/.test(input.lifeSpan) && /^[\-/) ]*$/.test(input.lifeSpan)) {
+    errors.lifeSpan = "Life span must be a number";
+    errors.hasErrors = true;
+  } else if (/^[a-zA-Z!@#/\$%\^\&*\)\(+=.,_-\s]+$/g.test(input.lifeSpan)) {
+    errors.lifeSpan = "Life span must be a number";
+    errors.hasErrors = true;
+  }
+
+  if (input.temperaments.length < 1) {
+    errors.temperaments = "Choose at least one temperament";
+    errors.hasErrors = true;
+  }
+
+  if (!input.image.includes("https://www") && !input.image.includes("http://www")) {
+    errors.image = "This isn't a valid image address";
+    errors.hasErrors = true;
+  }
+
   return errors;
-};
+}
+
 
 export default function DogCreate() {
   const dispatch = useDispatch();
@@ -107,7 +141,7 @@ export default function DogCreate() {
 
   return (
     <div className="create">
-      <h1>Create your own Dog!</h1>
+      <h1>Create your own dog breed!</h1>
       <div className="form">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div>
@@ -144,7 +178,7 @@ export default function DogCreate() {
               name="height"
               onChange={(e) => handleChange(e)}
             />
-            {errors.weight && <p className="error">{errors.weight}</p>}
+            {errors.height && <p className="error">{errors.height}</p>}
           </div>
           <div>
             <label>Life Span:</label>
@@ -187,14 +221,16 @@ export default function DogCreate() {
             ))}
             {errors.temperaments && <p className="error">{errors.temperaments}</p>}
           </div>
-          <button type="submit" className="btnCreate">
+          {errors.hasErrors === true || !input.name && !input.weight && !input.height && !input.image && input.temperaments.length < 1 ? <button disabled="true" type="submit" className="btnCreate">
             Create Breed
-          </button>
+          </button> : <button type="submit" className="btnCreate">
+            Create Breed
+          </button>}
         </form>
         <Link to="/home">
-        <button className="buttonToHome">Go Back</button>
-      </Link>
+          <button className="buttonToHome">Go Back</button>
+        </Link>
       </div>
-      </div>
+    </div>
   )
 };

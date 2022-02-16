@@ -1,4 +1,4 @@
-const { Dog, conn } = require('../../src/db.js');
+const { Dog, Temperament, conn } = require('../../src/db.js');
 const { expect } = require('chai');
 
 describe('Dog model', () => {
@@ -20,3 +20,23 @@ describe('Dog model', () => {
     });
   });
 });
+
+describe('Temperament model', () => {
+  before(() => conn.authenticate()
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err);
+  }));
+  beforeEach(()=> {
+    Temperament.sync ({force: true});  
+  });
+    it('Should not be created without all fields completed', (done)=> {
+    Temperament.create({
+      id: '8',
+    })
+    .then(()=> done (new Error('Should not have been created!!!')))
+    .catch(()=> done());
+    });
+    it('Name have to be a string', ()=>{
+      expect(typeof Temperament.name).equal("string")
+    })
+  });

@@ -22,7 +22,7 @@
   }
   
   .btnClear {
-    height: 26px;
+    height: 31px;
     margin-left: -30px;
     border-radius: 3px;
     border: solid 2px;
@@ -42,7 +42,8 @@
   }
 
   .btnSearch {
-    height: 26px;
+    border-color: white solid 2px;
+    height: 31px;
     margin-left: -35px;
     border-radius: 3px;
     border: solid 2px;
@@ -53,10 +54,10 @@
     background-color: whitesmoke;
     transition: background-color 0.25s;
     cursor: pointer;
-    color: rgb(24, 24, 24);
+    /* color: rgb(24, 24, 24); */
   }
 
-  .btnSearch:hover {
+  /* .btnSearch:hover {
     background-color: rgb(24, 24, 24);
     color: whitesmoke;
-  }
+  } */

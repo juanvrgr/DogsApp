@@ -1,8 +1,6 @@
 .detail {
     background-image: url("../assets/imgDetail.jpg");
-    margin: 0;
     width: 100%;
-    height: 100%;
     position: absolute;
     background-size:cover;
     background-position: center;
@@ -25,7 +23,7 @@
     transition: background-color 0.25s, color 0.25s;
     height: 45px;
     padding: 7px;
-    margin-top: 30px;
+    margin-top: 57px;
     margin-bottom: 0px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     cursor: pointer;
@@ -54,9 +52,11 @@
     margin-bottom: 20px;
   }
 
-  /* .detail img:hover {
-    border: 2px outset whitesmoke;
-  } */
+  .detail img:hover {
+    /* border: 2px outset whitesmoke; */
+    width:500px;
+    height:500px;
+  }
   
   .detail h2 {
     align-items: center;
