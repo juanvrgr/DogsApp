@@ -7,7 +7,7 @@ import "../styles/DogCreate.css";
 
 function validate(input) {
   let errors = { hasErrors: false };
-
+  let arr = [];
 
   if (!input.name) {
     errors.name = "Breed name required";
@@ -20,42 +20,61 @@ function validate(input) {
   if (!input.weight) {
     errors.weight = "Breed weight required";
     errors.hasErrors = true;
-  } else if (!/^[0-9]*$/.test(input.weight) && /^[\-/) ]*$/.test(input.weight)) {
-    errors.weight = "Weight must be a number";
-    errors.hasErrors = true;
-  } else if (/^[a-zA-Z!@#/\$%\^\&*\)\(+=.,_-\s]+$/g.test(input.weight)) {
-    errors.weight = "Weight must be a number";
-    errors.hasErrors = true;
+  } else if (input.weight) {
+    arr = input.weight.split(" ")
+    if (arr.length !== 3 || arr[1] !== '-') {
+      errors.weight = 'Enter min and max weight in this format " - "'
+      errors.hasErrors = true;
+    } else if (Number(arr[0]) > Number(arr[2])) {
+      errors.weight = "Invalid weight format"
+      errors.hasErrors = true;
+    }
+    else if (!/^[0-9\-/ ]+$/.test(input.weight)) { //&& /^[\s/) ]*$/.test(input.name)){
+      errors.weight = "Weight can only contain numbers!";
+      errors.hasErrors = true;
+    }
   }
 
   if (!input.height) {
     errors.height = "Breed height required";
     errors.hasErrors = true;
-  } else if (!/^[0-9]*$/.test(input.height) && /^[\-/) ]*$/.test(input.height)) {
-    errors.height = "Height must be a number";
-    errors.hasErrors = true;
-  } else if (/^[a-zA-Z!@#/\$%\^\&*\)\(+=.,_-\s]+$/g.test(input.height)) {
-    errors.height = "Weight must be a number";
-    errors.hasErrors = true;
+  } else if (input.height) {
+    arr = input.height.split(" ")
+    if (arr.length !== 3 || arr[1] !== '-') {
+      errors.height = 'Enter min and max height in this format " - "'
+      errors.hasErrors = true;
+    } else if (Number(arr[0]) > Number(arr[2])) {
+      errors.height = "Invalid height format"
+      errors.hasErrors = true;
+    } else if (!/^[0-9\-/ ]+$/.test(input.height)) {
+      errors.height = "Height can only contain numbers!";
+      errors.hasErrors = true;
+    }
   }
 
   if (!input.lifeSpan) {
     errors.lifeSpan = "Breed life span required";
     errors.hasErrors = true;
-  } else if (!/^[0-9]*$/.test(input.lifeSpan) && /^[\-/) ]*$/.test(input.lifeSpan)) {
-    errors.lifeSpan = "Life span must be a number";
-    errors.hasErrors = true;
-  } else if (/^[a-zA-Z!@#/\$%\^\&*\)\(+=.,_-\s]+$/g.test(input.lifeSpan)) {
-    errors.lifeSpan = "Life span must be a number";
-    errors.hasErrors = true;
+  } else if (input.lifeSpan) {
+    arr = input.lifeSpan.split(" ")
+    if (arr.length !== 3 || arr[1] !== '-') {
+      errors.lifeSpan = 'Enter min and max age in this format " - "'
+      errors.hasErrors = true;
+    } else if (Number(arr[0]) > Number(arr[2])) {
+      errors.lifeSpan = "Invalid life span format"
+      errors.hasErrors = true;
+    } else if (!/^[0-9\-/ ]+$/.test(input.lifeSpan)) {
+      errors.lifeSpan = "Life span can only contain numbers!";
+      errors.hasErrors = true;
+    }
   }
 
-  if (input.temperaments.length < 1) {
+  if (input.temperaments.length === 0) {
     errors.temperaments = "Choose at least one temperament";
     errors.hasErrors = true;
   }
 
-  if (!input.image.includes("https://www") && !input.image.includes("http://www")) {
+  if (!input.image.includes("https://") && !input.image.includes("http://")) {
     errors.image = "This isn't a valid image address";
     errors.hasErrors = true;
   }
@@ -73,6 +92,7 @@ export default function DogCreate() {
   useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
+
 
   const [input, setInput] = useState({
     name: "",
@@ -97,7 +117,6 @@ export default function DogCreate() {
   };
 
   function handleSelect(e) {
-    if (input.temperaments.indexOf(e.target.value) === -1) { // FIXED
       setInput((input) => ({
         ...input,
         temperaments: [...input.temperaments, e.target.value],
@@ -105,14 +124,13 @@ export default function DogCreate() {
       setErrors(
         validate({
           ...input,
-          temperaments: [...input.temperaments, e.target.value],
+          temperaments: [...input.temperaments, e.target.value]
         })
       );
-    }
   };
 
   function handleSubmit(e) {
-    if (input.name && input.weight && input.height && input.image && input.temperaments.length > 0) {
+    if (errors.hasErrors === false) {
       e.preventDefault();
       dispatch(postDog(input));
       alert("Breed created successfully!");
@@ -127,7 +145,7 @@ export default function DogCreate() {
       navigate("/home");
     } else {
       e.preventDefault();
-      alert("You must complete every field to continue!");
+      alert("Please complete all the fields with no errors!");
     }
   };
 
@@ -137,7 +155,15 @@ export default function DogCreate() {
       ...input,
       temperaments: input.temperaments.filter((temp) => temp !== d),
     });
+    setErrors(
+      validate({
+        ...input,
+        temperaments: input.temperaments.filter((temp) => temp !== d),
+      })
+    );
   };
+
+
 
   return (
     <div className="create">
@@ -184,7 +210,7 @@ export default function DogCreate() {
             <label>Life Span:</label>
             <input
               className="inputCreate"
-              placeholder="Complete here..."
+              placeholder="Min - Max"
               type="text"
               value={input.lifeSpan}
               name="lifeSpan"
@@ -221,9 +247,9 @@ export default function DogCreate() {
             ))}
             {errors.temperaments && <p className="error">{errors.temperaments}</p>}
           </div>
-          {errors.hasErrors === true || !input.name && !input.weight && !input.height && !input.image && input.temperaments.length < 1 ? <button disabled="true" type="submit" className="btnCreate">
+          {errors.hasErrors === false || (input.name && input.weight && input.height && input.lifeSpan && input.image && input.temperaments.length > 0) ? <button disabled={false} type="submit" className="btnCreate">
             Create Breed
-          </button> : <button type="submit" className="btnCreate">
+          </button> : <button disabled={true} type="submit" className="btnCreate">
             Create Breed
           </button>}
         </form>

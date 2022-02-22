@@ -29,7 +29,7 @@ export default function DogDelete() {
             </Link>
             <form onSubmit={handleDogDelete}>
                 <input className="inputDelete" type="text" value={id} onChange={handleChange} placeholder="Breed ID"></input>
-                <input className="buttonDelete"type="submit" value="X"></input>
+                <input className="buttonDelete" type="submit" value="X"></input>
             </form>
         </div>
     )

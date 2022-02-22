@@ -57,7 +57,7 @@ router.get("/dogs", async (req, res) => {
     let dogName = await dogsTotal.filter((e) =>
       e.name.toLowerCase().includes(name.toLowerCase())
     );
-    dogName//.length // SI SACO EL .length, al buscar una raza incorrecta, renderiza un espacio vacio!
+    dogName//.length
       ? res.status(200).json(dogName)
       : res.status(404).send(/*"This breed doesn't exist"*/);
   } else {
@@ -80,15 +80,15 @@ router.get("/dogs/:id", async (req, res) => {
 // Busca los temperamentos
 router.get("/temperaments", async (req, res) => {
   let temperamentApi = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
-  let tempMap = temperamentApi.data.map(e => e.temperament).toString(); //mapeo toda la data de temperamentos
-  tempMap = await tempMap.split(', '); // separo los string con ,
+  let tempMap = temperamentApi.data.map(e => e.temperament).toString();
+  tempMap = await tempMap.split(', ');
   const tempSpace = await tempMap.map(e => {
     if (e[0] == ' ') {
       return e.split('')
     }
     return e;
   })
-  const tempNotSpace = await tempSpace.map(e => { //vuelvo a mapear 
+  const tempNotSpace = await tempSpace.map(e => {
     if (Array.isArray(e)) {
       e.shift();
       return e.join('')
@@ -139,7 +139,7 @@ router.post("/dog", async (req, res) => {
 });
 
 router.delete("/dogs/delete/:id", (req, res, next) => {
-  const {id} = req.params;
+  const { id } = req.params;
   Dog.destroy({
     where: {
       id: id
@@ -147,10 +147,10 @@ router.delete("/dogs/delete/:id", (req, res, next) => {
   }).then((data) => {
     return res.json(data ? "Dog deleted" : "Couldn't delete any dog")
   })
-  .catch((e) => {
-    // return res.send(e).sendStatus(404)
-    next(e)
-  })
+    .catch((e) => {
+      // return res.send(e).sendStatus(404)
+      next(e)
+    })
 })
 
 module.exports = router;

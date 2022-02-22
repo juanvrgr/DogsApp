@@ -40,8 +40,8 @@ function rootReducer(state = initialState, action) {
     case FILTER_BY_TEMPERAMENTS:
       let dogs = state.allDogs;
       const temperamentFilter =
-        action.payload === 'all' ? dogs :
-          dogs.filter((e) => e.temperament?.includes(action.payload)) // ojo con el ?
+        action.payload === "all" ? dogs :
+          dogs.filter((e) => e.temperament?.includes(action.payload))
       const dbFilter =
         dogs.filter(e => {
           if (e.createdInDb === true) {
@@ -83,39 +83,15 @@ function rootReducer(state = initialState, action) {
       };
 
     case FILTER_CREATED:
-      const createdFilter = action.payload === 'created' ?
+      const createdFilter = action.payload === "created" ?
         state.allDogs.filter(el => el.createdInDb) :
         state.allDogs
       return {
         ...state,
-        dogs: action.payload === 'api' ? state.allDogs.filter(el => !el.createdInDb) : createdFilter
+        dogs: action.payload === "api" ? state.allDogs.filter(el => !el.createdInDb) : createdFilter
       };
 
     case ORDER_BY_WEIGHT:
-      //     let dogui = state.dogs
-      //     let sortedArray = action.payload === 'desc' ?
-      //         dogui.sort(function(a, b) {
-      //         if(Number(b.weight.split("-")[0]) > Number(a.weight.split("-")[0])) {
-      //             return -1;
-      //         }
-      //         if(Number(b.weight.split("-")[0]) > Number(a.weight.split("-")[0])){
-      //             return 1
-      //         }
-      //         return 0
-      //     }) :
-      //         dogui.sort(function(a, b) {
-      //         if( Number(a.weight.split("-")[0]) > Number(b.weight.split("-")[0])) {
-      //             return -1
-      //         }
-      //         if(Number(a.weight.split("-")[0]) > Number(b.weight.split("-")[0])){
-      //             return 1
-      //         }
-      //         return 0
-      //     })
-      // return {
-      //     ...state,
-      //     dogs: action.payload === "all" ? state.allDogs : sortedArray
-      // };
       let auxDogs = [...state.dogs]
       if (action.payload === "desc") {
         auxDogs.sort((a, b) => {
@@ -158,12 +134,12 @@ function rootReducer(state = initialState, action) {
         detail: [],
         loading: false
       }
-    
+
     case LOADING:
-        return {
-            ...state,
-           loading: true 
-        }
+      return {
+        ...state,
+        loading: true
+      }
 
     default:
       return state;

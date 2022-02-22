@@ -7,32 +7,13 @@ export default function Paginate({ dogsPerPage, dogs, paginate, value }) {
     pageNumbers.push(i);
   }
 
-  if (dogs > 8) {
-  } else if (dogs <= 8) {
-    return <div></div>
-  }
-
   return (
-    //     <nav>
-    //         {pageNumbers &&
-    //         pageNumbers.map((number) => (
-    //           <button key={number} onClick={() => paginate(number)}>
-    //             {number}
-    //           </button>
-    //           ))}
-    //     </nav>
-    // )
-    //         } else if (dogs <= 8){
-    //           return <div></div>
-    //         }
-
-    // };
     <div>
       <div className="div-paginado">
         {pageNumbers &&
           pageNumbers.map((number) => (
             <div className="btn-pag" key={number.toString()} >
-              <button className={number === value ? 'actual' : 'boton-paginado'} key={number} onClick={() => paginate(number)}>
+              <button className={number === value ? "actual" : "btn-pag"} key={number} onClick={() => paginate(number)}>
                 {number}
               </button>
             </div>

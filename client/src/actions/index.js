@@ -10,7 +10,7 @@ export const POST_DOG = "POST_DOG";
 export const GET_DETAIL = "GET_DETAIL";
 export const FILTER_CREATED = "FILTER_CREATED";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
-export const LOADING = 'LOADING';
+export const LOADING = "LOADING";
 
 
 export function getDogs() {

@@ -11,7 +11,7 @@
   }
 
   .detail h2 {
-    color: rgb(117, 194, 46);
+    color: rgb(19, 19, 18);
   }
   
   .detail button {
@@ -60,7 +60,7 @@
   
   .detail h2 {
     align-items: center;
-    color: rgb(117, 194, 46);
+    color: rgb(19, 19, 18);
   }
 
   .h3-2 h3 {
@@ -72,7 +72,7 @@
     margin-right: 17%;
     background-color: #5f5f5fab;
     padding: 2%;
-    font-family: "Comic Neue", cursive;
+    font-family: Georgia, 'Times New Roman', Times, serif;
   }
   
   .details ul {
@@ -80,7 +80,7 @@
     margin-right: 17%;
     background-color: #5f5f5fab;
     padding: 2%;
-    font-family: "Comic Neue", cursive;
+    font-family: Georgia, 'Times New Roman', Times, serif;
   }
 
   .boxTitle {
